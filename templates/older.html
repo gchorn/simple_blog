@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load comments %}
+{% block content %}
+<div id="wrapper">
+	{% if posts %}
+		{% include "post_list.html" with posts=posts %}
+	<div class="content">
+		<p class="nextLink">
+		{% if prev_start > 0 %}
+			<a href="/older/{{prev_start}}-{{prev_end}}/"><i><b>←</b> Newer Posts</i></a>
+		{% elif prev_start <= 0 %}
+			<a href="/"><i><b>←</b> Newer Posts</i></a>
+		{% endif %}
+		{% if next_set %}
+			<a href="/older/{{end}}-{{next_set}}/"><i> / Older Posts <b>→</b></i></a></p>
+		{% endif %}
+	</div>
+	{% else %}
+	<p>No posts are available.</p>
+	{% endif %}
+</div>
+{% endblock %}

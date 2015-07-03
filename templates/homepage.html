@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load comments %}
+{% block content %}
+<div id="wrapper">
+	{% if recent_posts %}
+	{% include "post_list.html" with posts=recent_posts %}
+	<div class="content">
+		<p class="nextLink"><a href="/older/{{end}}-{{next_set}}/"><i>Older Posts <b>→</b></i></a></p>
+	</div>
+	{% else %}
+	<p>No posts are available.</p>
+{% endif %}
+</div>
+{% endblock %}

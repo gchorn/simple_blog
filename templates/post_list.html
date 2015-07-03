@@ -1,0 +1,30 @@
+{% for post in posts %}
+	<div class="content">
+		{% if post.images.all.0.image %}
+			{% if post.custom_url %}
+			<a href="/posts/{{post.id}}-{{post.custom_url}}/">
+			{% else %}
+			<a href="/posts/{{post.id}}-{{post.title|slugify}}/">
+			{% endif %}
+			<img class="smallimage" src="{{MEDIA_URL}}{{post.images.all.0.image}}"/></a>
+		{% endif %}
+		<h2>
+			{% if post.uniqueurl %}
+			<a href="/posts/{{post.id}}-{{post.custom_url}}/">{{ post.title }}</a>
+			{% else %}
+			<a href="/posts/{{post.id}}-{{post.title|slugify}}/">{{ post.title }}</a>
+			{% endif %}
+		</h2>
+		<p><i>{{ post.pub_date }}</i></p>
+		{% autoescape off %}
+		{{ post.text|truncatewords_html:50 }}
+			{% if post.custom_url %}
+			<a href="/posts/{{post.id}}-{{post.custom_url}}/">
+			{% else %}
+			<a href="/posts/{{post.id}}-{{post.title|slugify}}/">
+			{% endif %}
+				<i>(Read more)</i>
+			</a>
+		{% endautoescape %}
+	</div>
+{% endfor %}

@@ -1,0 +1,12 @@
+Django==1.5
+PIL==1.1.7
+South==0.8.4
+django-tinymce==1.5.1
+lxml==3.1.0
+psycopg2==2.5
+pyOpenSSL==0.13
+sqlparse==0.1.10
+w3lib==1.2
+wsgiref==0.1.2
+yolk==0.4.3
+zope.interface==4.0.5

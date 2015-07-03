@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load comments %}
+{% block content %}
+{% load custom_filters %} 
+<div id="wrapper">
+	<div class="content" id="pagetitlewrapper">
+	<h1 id="pagetitle">Posts tagged with "{{ tag }}"</h1>
+</div>
+	{% if posts %}
+		{% include "post_list.html" with posts=posts %}
+	{% else %}
+	<p>No posts tagged with "{{tag}}" are available.</p>
+	{% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+
+<head>
+	<link rel="stylesheet" href="{{ STATIC_URL }}blog_style.css" type="text/css" /></link>
+	<link href='http://fonts.googleapis.com/css?family=Lora' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="{{ STATIC_URL }}script.js"></script>
+</head>
+
+<body>
+	<a id="header_link" href="/">
+	<div id="header">
+		<h1>blog title</h1>
+		<h1 class="subtitle">Blogging through life, one day at a time.</h1>
+		<ul class="navmenu">
+			<li class="navmenu"><a class="navmenu" href="/">Home</a></li>
+			<li class="navmenu"><a class="navmenu" href="/about/">About</a></li>
+		</ul>
+	</div>
+	</a>
+
+	<div id="rightcolumn">
+		<p class="link" id="searchtitle">Search</p>
+			<form action="/searchresults/" method="GET">
+				<input id="searchbox" type="text" name="q" value="{{ query|escape }}"/>
+				<input id="submitbutton" type="submit" value="Search"/>
+			</form>
+
+		<p class="link">Archives</p>
+			<div id="listContainer">
+				<ul class="open">
+				{% load custom_filters %}
+				{% for year,monthlist in archdict.items %}
+					<li class="year" id="{{year}}">
+						<a onclick="toggle('{{year}}');">
+							<img src="{{STATIC_URL}}background.gif" id="img_{{year}}" class="closedicon" border="0"/>
+							{{year}}
+						</a>
+							<ul id='ul_{{year}}' class="closed">
+							{% for month in monthlist %}
+								<li><a href="/archives/{{year}}/{{month}}/">{{month|displaymonth}} {{year}}</a></li>
+							{% endfor %}
+							</ul>
+					</li>
+				{% endfor %}
+				</ul>
+			</div>
+
+		<p class="link">Posts by Category</p>
+			<ul>
+			{% for category in categories %}
+				<li><a href="/categories/{{ category }}/">{{ category }}</a></li>
+			{% endfor %}
+			</ul>
+
+		<div id="twitterwrapper">
+			<p class="link" id="twitterheading">Follow me on Twitter!</p>
+			<!-- Include your Twitter widget here.  You can get a twitter widget that fits here at https://twitter.com/settings/widgets -->
+		</div>
+	</div>
+
+
+{% block content %}
+{% endblock %}
+
+
+	<div id="footer">
+		<p id="footerblurb">basic blog - designed and built by <a href="https://www.linkedin.com/pub/guillaume-chorn/32/127/504">Guillaume Chorn</a></p>
+</body>
+
+</html>

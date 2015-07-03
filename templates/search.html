@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load comments %}
+{% block content %}
+{% load custom_filters %} 
+<div id="wrapper">
+	<div class="title">
+		<h1 id="pagetitle">Search results for "{{ querywords|escape|cut:"[u'"|cut:"u'"|cut:"'"|cut:"]" }}"</h1>
+	</div>
+	{% if results %}
+		{% include "post_list.html" with posts=results %}
+	{% else %}
+	<div class="content">
+		<p>No results from search.</p>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
+

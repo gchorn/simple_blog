@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div id="wrapper">
+	<div class="content">
+		<h2>Thank you for posting a comment!</h2> 
+		<p>Thanks for your comment. It will be posted as soon as possible. In the meantime, click 
+			{% if post.uniqueurl %}
+			<a href="/posts/{{post.id}}-{{post.custom_url}}/"><strong>here</strong></a>
+			{% else %}
+			<a href="/posts/{{post.id}}-{{post.title|slugify}}/"><strong>here</strong></a>
+			{% endif %} to return to the entry you were viewing.</p>
+	</div>
+</div>
+
+{% endblock %}
